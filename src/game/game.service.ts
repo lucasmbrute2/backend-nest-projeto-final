@@ -21,8 +21,14 @@ export class GameService {
     })
   }
 
-  update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
+  update(id: number, data: UpdateGameDto) {
+    return this.prisma.game.update({
+      where: {
+        id
+      },
+      data
+
+    })
   }
 
   remove(id: number) {
