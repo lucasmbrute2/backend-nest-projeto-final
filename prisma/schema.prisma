@@ -41,7 +41,7 @@ model Game{
   ytbTrailer    String    @unique
   ytbGameplay   String    @unique        
 
-  genre         Genres[]        
+  genre         GamesOnGenres[]      
   user          UserOnGame[]
 }
 
@@ -49,8 +49,7 @@ model Genres{
   id            Int       @id@default(autoincrement())
   name          String    @unique
 
-  game          Game      @relation(fields: [gameId],references: [id], onDelete: Cascade, onUpdate:Cascade)
-  gameId        Int       
+  game          GamesOnGenres[]   
 }
 
 model UserOnGame{
@@ -62,4 +61,11 @@ model UserOnGame{
   @@id([userId, gameId])
 }
 
+model GamesOnGenres{
+  game          Game      @relation(fields: [gameId], references:[id], onDelete: Cascade)
+  gameId        Int
+  genre         Genres    @relation(fields: [genreId], references:[id],onDelete: Cascade)       
+  genreId       Int
 
+  @@id([gameId,genreId])
+}

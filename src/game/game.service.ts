@@ -34,7 +34,6 @@ export class GameService {
         id
       },
       include: this._include
-
     })
   }
 
