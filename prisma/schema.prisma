@@ -1,71 +1,68 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model game {
+  id            Int             @id @default(autoincrement())
+  title         String          @unique(map: "Game_title_key")
+  cover         String          @unique(map: "Game_cover_key")
+  description   String
+  year          Int
+  imdb          Float
+  ytbTrailer    String          @unique(map: "Game_ytbTrailer_key")
+  ytbGameplay   String          @unique(map: "Game_ytbGameplay_key")
+  gamesongenres gamesongenres[]
+  userongame    userongame[]
 }
 
-model User{
-  id            Int       @id@default(autoincrement())
-  name          String    
-  lastName      String    
-  password      String    
-  email         String    @unique
-  cpf           String
+model gamesongenres {
+  gameId  Int
+  genreId Int
+  game    game   @relation(fields: [gameId], references: [id], onDelete: Cascade, map: "GamesOnGenres_gameId_fkey")
+  genres  genres @relation(fields: [genreId], references: [id], onDelete: Cascade, map: "GamesOnGenres_genreId_fkey")
 
-  profiles      Profiles[]
-  game          UserOnGame[]
+  @@id([gameId, genreId])
+  @@index([genreId], map: "GamesOnGenres_genreId_fkey")
 }
 
-model Profiles{
-  id            Int       @id@default(autoincrement())
-  title         String    
-  image         String       
-  user          User     @relation(fields: [userId],references: [id], onDelete: Cascade, onUpdate:Cascade)
-  userId        Int
-
+model genres {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique(map: "Genres_name_key")
+  gamesongenres gamesongenres[]
 }
 
-model Game{
-  id            Int       @id@default(autoincrement())
-  title         String    @unique
-  cover         String    @unique
-  description   String    
-  year          Int         
-  imdb          Float     
-  ytbTrailer    String    @unique
-  ytbGameplay   String    @unique        
+model profiles {
+  id     Int    @id @default(autoincrement())
+  title  String
+  image  String
+  userId Int
+  user   user   @relation(fields: [userId], references: [id], onDelete: Cascade, map: "Profiles_userId_fkey")
 
-  genre         GamesOnGenres[]      
-  user          UserOnGame[]
+  @@index([userId], map: "Profiles_userId_fkey")
 }
 
-model Genres{
-  id            Int       @id@default(autoincrement())
-  name          String    @unique
-
-  game          GamesOnGenres[]   
+model user {
+  id         Int          @id @default(autoincrement())
+  name       String
+  lastName   String
+  password   String
+  email      String       @unique(map: "User_email_key")
+  cpf        String
+  profiles   profiles[]
+  userongame userongame[]
 }
 
-model UserOnGame{
-  user          User      @relation(fields: [userId], references:[id], onDelete: Cascade)
-  userId        Int
-  game          Game      @relation(fields: [gameId], references:[id],onDelete: Cascade)
-  gameId        Int
+model userongame {
+  userId Int
+  gameId Int
+  game   game @relation(fields: [gameId], references: [id], onDelete: Cascade, map: "UserOnGame_gameId_fkey")
+  user   user @relation(fields: [userId], references: [id], onDelete: Cascade, map: "UserOnGame_userId_fkey")
 
   @@id([userId, gameId])
-}
-
-model GamesOnGenres{
-  game          Game      @relation(fields: [gameId], references:[id], onDelete: Cascade)
-  gameId        Int
-  genre         Genres    @relation(fields: [genreId], references:[id],onDelete: Cascade)       
-  genreId       Int
-
-  @@id([gameId,genreId])
+  @@index([gameId], map: "UserOnGame_gameId_fkey")
 }
