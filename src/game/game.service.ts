@@ -8,11 +8,28 @@ export class GameService {
   constructor(public readonly prisma: PrismaService) { }
 
   create(data: CreateGameDto) {
-    return this.prisma.game.create({ data })
+    return this.prisma.game.create({
+      data,
+      include: {
+        genre: {
+          select: {
+            name: true
+          }
+        }
+      }
+    })
   }
 
   findAll() {
-    return this.prisma.game.findMany({})
+    return this.prisma.game.findMany({
+      include: {
+        genre: {
+          select: {
+            name: true
+          }
+        },
+      }
+    })
   }
 
   findOne(id: number) {
@@ -27,11 +44,12 @@ export class GameService {
         id
       },
       data
-
     })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} game`;
+    return this.prisma.game.delete({
+      where: { id }
+    })
   }
 }
