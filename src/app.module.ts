@@ -5,7 +5,7 @@ import { ProfileModule } from './profile/profile.module';
 import { GenreModule } from './genre/genre.module';
 import { UserModule } from './user/user.module';
 import { GameModule } from './game/game.module';
-import { GameModule } from './game/game.module';
+
 
 @Module({
   imports: [GameModule, UserModule, ProfileModule, GenreModule, UserModule],
