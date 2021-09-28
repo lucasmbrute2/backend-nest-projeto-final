@@ -1,55 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
 
 @Injectable()
 export class GameService {
-  constructor(public readonly prisma: PrismaService) { }
-
-  private readonly _include = {
-    genre: {
-      select: {
-        name: true
-      }
-    }
-  }
-
-  create(data: CreateGameDto) {
-    return this.prisma.game.create({
-      data,
-      include: this._include
-    })
+  create(createGameDto: CreateGameDto) {
+    return 'This action adds a new game';
   }
 
   findAll() {
-    return this.prisma.game.findMany({
-      include: this._include
-    })
+    return `This action returns all game`;
   }
 
   findOne(id: number) {
-    return this.prisma.game.findUnique({
-      where: {
-        id
-      },
-      include: this._include
-    })
+    return `This action returns a #${id} game`;
   }
 
-  update(id: number, data: UpdateGameDto) {
-    return this.prisma.game.update({
-      where: {
-        id
-      },
-      data,
-      include: this._include
-    })
+  update(id: number, updateGameDto: UpdateGameDto) {
+    return `This action updates a #${id} game`;
   }
 
   remove(id: number) {
-    return this.prisma.game.delete({
-      where: { id }
-    })
+    return `This action removes a #${id} game`;
   }
 }
