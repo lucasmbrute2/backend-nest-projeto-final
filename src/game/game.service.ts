@@ -7,34 +7,34 @@ import { UpdateGameDto } from './dto/update-game.dto';
 export class GameService {
   constructor(public readonly prisma: PrismaService) { }
 
+  private readonly _include = {
+    genre: {
+      select: {
+        name: true
+      }
+    }
+  }
+
   create(data: CreateGameDto) {
     return this.prisma.game.create({
       data,
-      include: {
-        genre: {
-          select: {
-            name: true
-          }
-        }
-      }
+      include: this._include
     })
   }
 
   findAll() {
     return this.prisma.game.findMany({
-      include: {
-        genre: {
-          select: {
-            name: true
-          }
-        },
-      }
+      include: this._include
     })
   }
 
   findOne(id: number) {
     return this.prisma.game.findUnique({
-      where: { id }
+      where: {
+        id
+      },
+      include: this._include
+
     })
   }
 
@@ -43,7 +43,8 @@ export class GameService {
       where: {
         id
       },
-      data
+      data,
+      include: this._include
     })
   }
 
