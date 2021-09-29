@@ -7,9 +7,6 @@ import { UpdateGameDto } from './dto/update-game.dto';
 export class GameService {
   constructor(private prisma: PrismaService) { }
 
-  private readonly _include = {
-
-  }
   create(data: CreateGameDto) {
     return this.prisma.game.create({
       data,
