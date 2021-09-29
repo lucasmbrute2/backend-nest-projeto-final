@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { profile } from 'console';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -7,20 +8,20 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserService {
   constructor(private prisma: PrismaService) { }
 
+  private readonly _include = {
+    profiles: true
+  }
+
   create(data: CreateUserDto) {
     return this.prisma.user.create({
       data,
-      include: {
-        profiles: true
-      }
+      include: this._include
     })
   }
 
   findAll() {
     return this.prisma.user.findMany({
-      include: {
-        profiles: true
-      }
+      include: this._include
     })
   }
 
@@ -28,9 +29,7 @@ export class UserService {
     return this.prisma.user.findMany({
       where: {
         id
-      }, include: {
-        profiles: true
-      }
+      }, include: this._include
     })
   }
 
@@ -40,9 +39,7 @@ export class UserService {
         id,
       },
       data,
-      include: {
-        profiles: true
-      }
+      include: this._include
     })
   }
 
