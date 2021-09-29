@@ -34,8 +34,16 @@ export class UserService {
     })
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: number, data: UpdateUserDto) {
+    return this.prisma.user.update({
+      where: {
+        id,
+      },
+      data,
+      include: {
+        profiles: true
+      }
+    })
   }
 
   remove(id: number) {
