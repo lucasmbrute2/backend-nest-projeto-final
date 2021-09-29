@@ -9,7 +9,10 @@ export class UserService {
 
   create(data: CreateUserDto) {
     return this.prisma.user.create({
-      data
+      data,
+      include: {
+        profiles: true
+      }
     })
   }
 
@@ -36,6 +39,10 @@ export class UserService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.prisma.user.delete({
+      where: {
+        id
+      }
+    })
   }
 }
