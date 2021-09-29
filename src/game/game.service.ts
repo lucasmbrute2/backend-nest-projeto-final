@@ -13,10 +13,19 @@ export class GameService {
   create(data: CreateGameDto) {
     return this.prisma.game.create({
       data,
-      include: { gamesongenres: true }
+      include: {
+        gamesongenres: {
+          include: {
+            genres: {
+              select: {
+                name: true
+              }
+            }
+          }
+        }
+      }
     })
   }
-
   findAll() {
     return this.prisma.game.findMany({
       include: {
@@ -33,7 +42,6 @@ export class GameService {
       }
     })
   }
-
   findOne(id: number) {
     return this.prisma.game.findUnique({
       where: {
@@ -42,11 +50,19 @@ export class GameService {
     })
   }
 
-  update(id: number, updateGameDto: UpdateGameDto) {
-    return `This action updates a #${id} game`;
-  }
+  update(id: number, data: UpdateGameDto) {
+    return this.prisma.game.update({
+      where: {
+        id
+      }, data
+    })
 
+  }
   remove(id: number) {
-    return `This action removes a #${id} game`;
+    return this.prisma.game.delete({
+      where: {
+        id
+      }
+    })
   }
 }
