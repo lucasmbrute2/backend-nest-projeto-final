@@ -28,12 +28,7 @@ export class GameService {
       include: {
         gamesongenres: {
           select: {
-            genres: {
-              select:
-              {
-                name: true
-              }
-            }
+            genres: true
           }
         }
       }
@@ -56,11 +51,7 @@ export class GameService {
       include: {
         gamesongenres: {
           select: {
-            genres: {
-              select: {
-                name: true
-              }
-            }
+            genres: true
           }
         }
       }
