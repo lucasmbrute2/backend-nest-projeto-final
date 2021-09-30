@@ -51,7 +51,19 @@ export class GameService {
     return this.prisma.game.update({
       where: {
         id
-      }, data
+      },
+      data,
+      include: {
+        gamesongenres: {
+          select: {
+            genres: {
+              select: {
+                name: true
+              }
+            }
+          }
+        }
+      }
     })
 
   }
