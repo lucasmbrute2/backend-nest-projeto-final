@@ -1,19 +1,38 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGenreDto } from './dto/create-genre.dto';
 import { UpdateGenreDto } from './dto/update-genre.dto';
 
 @Injectable()
 export class GenreService {
+  constructor(private prisma: PrismaService) { }
+
+  private readonly _include = {
+    gamesongenres: {
+      include: {
+        game: true
+      }
+    }
+  }
   create(createGenreDto: CreateGenreDto) {
-    return 'This action adds a new genre';
+    return this.prisma.genres.create({
+
+    })
   }
 
   findAll() {
-    return `This action returns all genre`;
+    return this.prisma.genres.findMany({
+      include: this._include
+    })
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} genre`;
+    return this.prisma.genres.findUnique({
+      where: {
+        id
+      },
+      include: this._include
+    })
   }
 
   update(id: number, updateGenreDto: UpdateGenreDto) {
