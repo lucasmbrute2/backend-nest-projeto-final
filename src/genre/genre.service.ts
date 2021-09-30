@@ -14,9 +14,10 @@ export class GenreService {
       }
     }
   }
-  create(createGenreDto: CreateGenreDto) {
+  create(data: CreateGenreDto) {
     return this.prisma.genres.create({
-
+      data,
+      include: this._include
     })
   }
 
@@ -35,11 +36,17 @@ export class GenreService {
     })
   }
 
-  update(id: number, updateGenreDto: UpdateGenreDto) {
-    return `This action updates a #${id} genre`;
+  update(id: number, data: UpdateGenreDto) {
+    return this.prisma.genres.update({
+      where: {
+        id
+      },
+      data,
+      include: this._include
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${id} genre`;
+    return
   }
 }
