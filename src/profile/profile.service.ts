@@ -32,8 +32,14 @@ export class ProfileService {
     })
   }
 
-  update(id: number, updateProfileDto: UpdateProfileDto) {
-    return `This action updates a #${id} profile`;
+  update(id: number, data: UpdateProfileDto) {
+    return this.prisma.profiles.update({
+      where: {
+        id
+      },
+      data,
+      include: this._include
+    })
   }
 
   remove(id: number) {
