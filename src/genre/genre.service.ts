@@ -47,6 +47,10 @@ export class GenreService {
   }
 
   remove(id: number) {
-    return
+    return this.prisma.genres.delete({
+      where: {
+        id
+      }
+    })
   }
 }
