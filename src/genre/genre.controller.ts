@@ -7,7 +7,7 @@ import { UpdateGenreDto } from './dto/update-genre.dto';
 export class GenreController {
   constructor(private readonly genreService: GenreService) { }
 
-  private readonly errorReturn = (id) => { throw new HttpException('Not Found', 404) }
+  private readonly errorReturn = (id: string) => { throw new HttpException('Not Found', 404) }
   @Post()
   create(@Body() createGenreDto: CreateGenreDto) {
     return this.genreService.create(createGenreDto);

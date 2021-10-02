@@ -38,7 +38,7 @@ export class GameService {
     return this.prisma.game.findUnique({
       where: {
         id
-      }
+      }, rejectOnNotFound: true
     })
   }
 
