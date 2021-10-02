@@ -33,7 +33,7 @@ export class ProfileService {
     })
   }
 
-  update(id: number, data: UpdateProfileDto) {
+  async update(id: number, data: UpdateProfileDto) {
     return this.prisma.profiles.update({
       where: {
         id
@@ -43,7 +43,7 @@ export class ProfileService {
     })
   }
 
-  remove(id: number) {
+  async remove(id: number) {
     return this.prisma.profiles.delete({
       where: {
         id
