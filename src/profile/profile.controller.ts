@@ -7,7 +7,7 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) { }
 
-  private readonly _errorReturn = (id: string) => { throw new HttpException('Erro', 400) }
+  private readonly _errorReturn = (id: string) => { throw new HttpException('Not Found', 400) }
 
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {

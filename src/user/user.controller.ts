@@ -7,7 +7,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
-  private readonly _errorReturn = (id: string) => { throw new HttpException('Erro', 404) }
+  private readonly _errorReturn = (id: string) => { throw new HttpException('Not Found', 404) }
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
