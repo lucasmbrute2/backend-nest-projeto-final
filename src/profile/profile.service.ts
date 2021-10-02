@@ -23,12 +23,13 @@ export class ProfileService {
     })
   }
 
-  findOne(id: number) {
+  async findOne(id: number) {
     return this.prisma.profiles.findUnique({
       where: {
         id
       },
-      include: this._include
+      include: this._include,
+      rejectOnNotFound: true
     })
   }
 
