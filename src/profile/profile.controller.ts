@@ -27,12 +27,12 @@ export class ProfileController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return this.profileService.update(+id, updateProfileDto);
+    return this.profileService.update(+id, updateProfileDto).catch((err) => this._errorReturn(id))
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
-    return this.profileService.remove(+id);
+    return this.profileService.remove(+id).catch((err) => this._errorReturn(id))
   }
 }
