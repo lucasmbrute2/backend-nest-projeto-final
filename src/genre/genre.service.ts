@@ -32,7 +32,8 @@ export class GenreService {
       where: {
         id
       },
-      include: this._include
+      include: this._include,
+      rejectOnNotFound: true
     })
   }
 
