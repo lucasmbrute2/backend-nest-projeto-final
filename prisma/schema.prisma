@@ -50,3 +50,18 @@ model ProfilesOnGames {
 
   @@id([profileId,gameId])
 }
+
+model Genre {
+  id              Int         @id@default(autoincrement())
+  name            String      @unique
+
+}
+
+@model GamesOnGenres {
+  game            Game      @relation(fields:[gameId],references:[id], onDelete:Cascade, onUpdate: Cascade)
+  gameId          Int
+  Genre           Genre     @relation(fields:[genreId],references:[id], onDelete:Cascade, onUpdate:Cascade)
+  genreId         Int
+
+  @@id([gameId,genreId])
+}
