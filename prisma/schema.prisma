@@ -7,62 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model game {
-  id            Int             @id @default(autoincrement())
-  title         String          @unique(map: "Game_title_key")
-  cover         String          @unique(map: "Game_cover_key")
-  description   String
-  year          Int
-  imdb          Float
-  ytbTrailer    String          @unique(map: "Game_ytbTrailer_key")
-  ytbGameplay   String          @unique(map: "Game_ytbGameplay_key")
-  gamesongenres gamesongenres[]
-  userongame    userongame[]
+model Users{
+  id          Int         @id@default(autoincrement())
+  name        String      
+  lastName    String  
+  email       String      @unique
+  password    String 
+  cpf         String      @unique
+  
+  profile   Profile[]
 }
 
-model gamesongenres {
-  gameId  Int
-  genreId Int
-  game    game   @relation(fields: [gameId], references: [id], onDelete: Cascade, map: "GamesOnGenres_gameId_fkey")
-  genres  genres @relation(fields: [genreId], references: [id], onDelete: Cascade, map: "GamesOnGenres_genreId_fkey")
+model Profile{
+  id        Int         @id@default(autoincrement())
+  title     String      
+  image     String      
 
-  @@id([gameId, genreId])
-  @@index([genreId], map: "GamesOnGenres_genreId_fkey")
-}
-
-model genres {
-  id            Int             @id @default(autoincrement())
-  name          String          @unique(map: "Genres_name_key")
-  gamesongenres gamesongenres[]
-}
-
-model profiles {
-  id     Int    @id @default(autoincrement())
-  title  String
-  image  String
-  userId Int
-  user   user   @relation(fields: [userId], references: [id], onDelete: Cascade, map: "Profiles_userId_fkey")
-
-  @@index([userId], map: "Profiles_userId_fkey")
-}
-
-model user {
-  id         Int          @id @default(autoincrement())
-  name       String
-  lastName   String
-  password   String
-  email      String       @unique(map: "User_email_key")
-  cpf        String
-  profiles   profiles[]
-  userongame userongame[]
-}
-
-model userongame {
-  userId Int
-  gameId Int
-  game   game @relation(fields: [gameId], references: [id], onDelete: Cascade, map: "UserOnGame_gameId_fkey")
-  user   user @relation(fields: [userId], references: [id], onDelete: Cascade, map: "UserOnGame_userId_fkey")
-
-  @@id([userId, gameId])
-  @@index([gameId], map: "UserOnGame_gameId_fkey")
+  
 }
