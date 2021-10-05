@@ -1,8 +1,9 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 import { Profile } from "../entities/profile.entity";
 
 export class CreateProfileDto extends Profile {
     @IsNotEmpty()
+    @IsNumber()
     id?: number;
 
     @IsString()
