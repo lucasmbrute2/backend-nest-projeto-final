@@ -26,7 +26,7 @@ model Profile {
   userId          Int
   user            User        @relation(fields:[userId],references:[id], onDelete:Cascade ,onUpdate: Cascade)
  
-
+  game            ProfilesOnGames[]
 }
 
 model Game{
@@ -39,6 +39,7 @@ model Game{
   trailerYtb      String      @unique
   gameplayYtb     String      @unique
 
+  profile         ProfilesOnGames[]
 }
 
 model ProfilesOnGames {
