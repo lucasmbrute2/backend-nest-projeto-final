@@ -1,5 +1,5 @@
 import { Prisma } from ".prisma/client";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Game } from "../entities/game.entity";
 
 export class CreateGameDto extends Game {
@@ -16,9 +16,11 @@ export class CreateGameDto extends Game {
     description: string;
 
     @IsNotEmpty()
+    @IsNumber()
     year: number;
 
     @IsNotEmpty()
+    @IsNumber()
     imdb: number;
 
     @IsNotEmpty()
