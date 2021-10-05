@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users{
+model User{
   id          Int         @id@default(autoincrement())
   name        String      
   lastName    String  
@@ -22,6 +22,7 @@ model Profile{
   id        Int         @id@default(autoincrement())
   title     String      
   image     String      
-
+  userId    Int
+  user      User        @relation(fields:[userd],references:[id], onDelete:Cascade ,onUpdate: Cascade)
   
 }
