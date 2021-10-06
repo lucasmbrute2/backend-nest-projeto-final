@@ -25,7 +25,6 @@ export class CreateUserDto extends User {
     cpf: string;
 
 
+    profile?: Prisma.ProfileUncheckedCreateNestedManyWithoutUserInput;
 
-    profiles?: Prisma.profilesUncheckedCreateNestedManyWithoutUserInput;
-    userongame?: Prisma.userongameUncheckedCreateNestedManyWithoutUserInput;
 }

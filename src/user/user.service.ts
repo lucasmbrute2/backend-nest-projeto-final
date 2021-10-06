@@ -8,7 +8,7 @@ export class UserService {
   constructor(private prisma: PrismaService) { }
 
   private readonly _include = {
-    profiles: true
+    profile: true
   }
 
   create(data: CreateUserDto) {
