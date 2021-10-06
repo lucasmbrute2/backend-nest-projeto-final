@@ -1,6 +1,6 @@
 import { Prisma } from ".prisma/client";
 
-export class User implements Prisma.UserUncheckedCreateInput {
+export class User {
     id?: number;
     name: string;
     lastName: string;
@@ -8,5 +8,13 @@ export class User implements Prisma.UserUncheckedCreateInput {
     password: string;
     cpf: string;
     admin?: boolean;
-    profile?: Prisma.ProfileUncheckedCreateNestedManyWithoutUserInput;
+    profile?: Profile[];
+}
+
+export class Profile {
+    id?: number;
+    title: string;
+    image: string;
+    userId: number;
+    game?: Prisma.ProfilesOnGamesUncheckedCreateNestedManyWithoutProfileInput;
 }
