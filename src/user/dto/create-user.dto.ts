@@ -1,9 +1,10 @@
 import { Prisma } from "@prisma/client";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, isString, IsString } from "class-validator";
 import { User } from "../entities/user.entity";
 
 export class CreateUserDto extends User {
     id?: number;
+
     @IsNotEmpty()
     @IsString()
     name: string;
@@ -18,10 +19,11 @@ export class CreateUserDto extends User {
 
     @IsNotEmpty()
     @IsString()
+    @IsEmail()
     email: string;
 
-    @IsNotEmpty()
     @IsString()
+    @IsNotEmpty()
     cpf: string;
 
 
