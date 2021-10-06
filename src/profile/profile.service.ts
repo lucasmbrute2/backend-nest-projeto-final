@@ -8,23 +8,24 @@ export class ProfileService {
   constructor(private prisma: PrismaService) { }
 
   private readonly _include = {
-    user: true
+    user: true,
+    game: true
   }
   create(data: CreateProfileDto) {
-    return this.prisma.profiles.create({
+    return this.prisma.profile.create({
       data,
       include: this._include
     })
   }
 
   findAll() {
-    return this.prisma.profiles.findMany({
+    return this.prisma.profile.findMany({
       include: this._include
     })
   }
 
   async findOne(id: number) {
-    return this.prisma.profiles.findUnique({
+    return this.prisma.profile.findUnique({
       where: {
         id
       },
@@ -34,7 +35,7 @@ export class ProfileService {
   }
 
   async update(id: number, data: UpdateProfileDto) {
-    return this.prisma.profiles.update({
+    return this.prisma.profile.update({
       where: {
         id
       },
@@ -44,7 +45,7 @@ export class ProfileService {
   }
 
   async remove(id: number) {
-    return this.prisma.profiles.delete({
+    return this.prisma.profile.delete({
       where: {
         id
       }
