@@ -8,27 +8,24 @@ export class GenreService {
   constructor(private prisma: PrismaService) { }
 
   private readonly _include = {
-    gamesongenres: {
-      include: {
-        game: true
-      }
-    }
+    games: true
   }
+
   create(data: CreateGenreDto) {
-    return this.prisma.genres.create({
+    return this.prisma.genre.create({
       data,
       include: this._include
     })
   }
 
   findAll() {
-    return this.prisma.genres.findMany({
+    return this.prisma.genre.findMany({
       include: this._include
     })
   }
 
   findOne(id: number) {
-    return this.prisma.genres.findUnique({
+    return this.prisma.genre.findUnique({
       where: {
         id
       },
@@ -38,7 +35,7 @@ export class GenreService {
   }
 
   update(id: number, data: UpdateGenreDto) {
-    return this.prisma.genres.update({
+    return this.prisma.genre.update({
       where: {
         id
       },
@@ -48,7 +45,7 @@ export class GenreService {
   }
 
   remove(id: number) {
-    return this.prisma.genres.delete({
+    return this.prisma.genre.delete({
       where: {
         id
       }
