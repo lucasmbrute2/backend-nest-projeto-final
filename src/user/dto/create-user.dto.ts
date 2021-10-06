@@ -1,5 +1,6 @@
-import { Prisma } from "@prisma/client";
+
 import { IsEmail, IsNotEmpty, isString, IsString } from "class-validator";
+import { Profile } from "src/entities/profile.entity";
 import { User } from "../entities/user.entity";
 
 export class CreateUserDto extends User {
@@ -27,12 +28,6 @@ export class CreateUserDto extends User {
     cpf: string;
 
 
-    profile?: CreateProfileDto[]
+    profile?: Profile[];
 }
 
-export class CreateProfileDto {
-
-    title: string;
-    image: string
-
-}

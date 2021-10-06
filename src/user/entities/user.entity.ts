@@ -1,4 +1,5 @@
-import { Prisma } from ".prisma/client";
+import { Profile } from "src/entities/profile.entity";
+
 
 export class User {
     id?: number;
@@ -11,10 +12,3 @@ export class User {
     profile?: Profile[];
 }
 
-export class Profile {
-    id?: number;
-    title: string;
-    image: string;
-    userId: number;
-    game?: Prisma.ProfilesOnGamesUncheckedCreateNestedManyWithoutProfileInput;
-}
