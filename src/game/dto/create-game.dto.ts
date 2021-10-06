@@ -31,7 +31,6 @@ export class CreateGameDto extends Game {
     @IsString()
     ytbGameplay: string;
 
-
-    gamesongenres?: Prisma.gamesongenresUncheckedCreateNestedManyWithoutGameInput;
-    userongame?: Prisma.userongameUncheckedCreateNestedManyWithoutGameInput;
+    profiles?: Prisma.ProfilesOnGamesCreateNestedManyWithoutGameInput;
+    genres?: Prisma.GamesOnGenresCreateNestedManyWithoutGameInput;
 }

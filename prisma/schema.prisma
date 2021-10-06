@@ -62,7 +62,7 @@ model Genre {
 model GamesOnGenres {
   game            Game      @relation(fields:[gameId],references:[id], onDelete:Cascade, onUpdate: Cascade)
   gameId          Int
-  Genre           Genre     @relation(fields:[genreId],references:[id], onDelete:Cascade, onUpdate:Cascade)
+  genre           Genre     @relation(fields:[genreId],references:[id], onDelete:Cascade, onUpdate:Cascade)
   genreId         Int
 
   @@id([gameId,genreId])
