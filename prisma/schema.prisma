@@ -35,7 +35,7 @@ model Game{
   cover           String      @unique
   description     String      
   year            Int         
-  imdb            Int
+  imdb            Float
   trailerYtb      String      @unique
   gameplayYtb     String      @unique
 
