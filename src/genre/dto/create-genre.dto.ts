@@ -9,5 +9,5 @@ export class CreateGenreDto extends Genre {
     @IsNotEmpty()
     name: string;
 
-    gamesongenres?: Prisma.gamesongenresUncheckedCreateNestedManyWithoutGenresInput;
+    gamesongenres?: Prisma.GamesOnGenresUncheckedCreateNestedManyWithoutGenreInput;
 }
