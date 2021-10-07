@@ -1,11 +1,9 @@
+import { Type } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsOptional, isString, IsString, ValidateNested } from "class-validator";
 import { CreateProfileDto } from "src/dto/profile/create-profile.dto";
-import { Profile } from "src/entities/profile/profile.entity";
 import { User } from "../entities/user.entity";
 
 export class CreateUserDto extends User {
-    id?: number;
-
     @IsNotEmpty()
     @IsString()
     name: string;
@@ -29,6 +27,6 @@ export class CreateUserDto extends User {
 
     @ValidateNested({ each: true })
     @IsOptional()
-
-    profile?: CreateProfileDto[];
+    @Type(() => CreateProfileDto)
+    profile?: CreateProfileDto | CreateProfileDto[];
 }
