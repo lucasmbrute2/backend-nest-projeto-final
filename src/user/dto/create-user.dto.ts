@@ -30,4 +30,3 @@ export class CreateUserDto extends User {
 
     profile?: Profile[];
 }
-
