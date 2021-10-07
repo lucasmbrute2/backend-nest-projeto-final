@@ -1,6 +1,5 @@
-
-import { IsEmail, IsNotEmpty, isString, IsString } from "class-validator";
-import { Profile } from "src/entities/profile.entity";
+import { IsEmail, IsNotEmpty, IsOptional, isString, IsString } from "class-validator";
+import { Profile } from "src/profile/entities/profile.entity";
 import { User } from "../entities/user.entity";
 
 export class CreateUserDto extends User {
@@ -27,6 +26,6 @@ export class CreateUserDto extends User {
     @IsNotEmpty()
     cpf: string;
 
-
+    @IsOptional()
     profile?: Profile[];
 }
