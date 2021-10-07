@@ -1,3 +1,4 @@
+import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -11,7 +12,14 @@ export class UserService {
     profile: true
   }
 
-  create(data: CreateUserDto) {
+  create(dto: CreateUserDto) {
+    const data: Prisma.UserCreateInput = {
+      ...dto,
+      profile: {
+        create: dto.profile
+      }
+    }
+
     return this.prisma.user.create({
       data,
       include: this._include
