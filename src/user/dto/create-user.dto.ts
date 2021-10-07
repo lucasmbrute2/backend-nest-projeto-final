@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsOptional, isString, IsString } from "class-validator";
-import { Profile } from "src/profile/entities/profile.entity";
+import { Profile } from "src/entities/profile/profile.entity";
 import { User } from "../entities/user.entity";
 
 export class CreateUserDto extends User {

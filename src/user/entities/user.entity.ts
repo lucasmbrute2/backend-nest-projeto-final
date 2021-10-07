@@ -1,4 +1,6 @@
-import { Profile } from "src/profile/entities/profile.entity";
+import { Profile } from "src/entities/profile/profile.entity";
+
+
 
 export class User {
     id?: number;
