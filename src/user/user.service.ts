@@ -42,7 +42,13 @@ export class UserService {
     })
   }
 
-  async update(id: number, data: UpdateUserDto) {
+  async update(id: number, dto: UpdateUserDto) {
+    const data: Prisma.UserUpdateInput = {
+      ...dto,
+      profile: {
+        create: dto.profile
+      }
+    }
     return this.prisma.user.update({
       where: {
         id,

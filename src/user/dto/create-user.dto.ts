@@ -1,5 +1,5 @@
 import { Type } from "class-transformer";
-import { IsEmail, IsNotEmpty, IsOptional, isString, IsString, ValidateNested } from "class-validator";
+import { IsArray, IsBoolean, IsEmail, IsNotEmpty, IsOptional, isString, IsString, ValidateNested } from "class-validator";
 import { CreateProfileDto } from "src/profile/dto/create-profile.dto";
 import { User } from "../entities/user.entity";
 
@@ -12,7 +12,7 @@ export class CreateUserDto extends User {
     @IsString()
     lastName: string;
 
-    @IsNotEmpty() s
+    @IsNotEmpty()
     @IsString()
     password: string;
 
@@ -25,8 +25,12 @@ export class CreateUserDto extends User {
     @IsNotEmpty()
     cpf: string;
 
+    @IsBoolean()
+    admin: boolean
+
     @ValidateNested({ each: true })
     @IsOptional()
     @Type(() => CreateProfileDto)
-    profile?: CreateProfileDto | CreateProfileDto[];
+    @IsArray()
+    profile?: CreateProfileDto[];
 }
