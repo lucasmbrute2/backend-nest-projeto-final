@@ -1,6 +1,7 @@
 import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdateProfileDto } from 'src/profile/dto/update-profile.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -46,7 +47,21 @@ export class UserService {
     const data: Prisma.UserUpdateInput = {
       ...dto,
       profile: {
-        create: dto.profile
+        upsert: dto.profile.map(updateProfileDto => {
+          return {
+            where: {
+              id: updateProfileDto.id
+            },
+            update: {
+              image: updateProfileDto.image,
+              title: updateProfileDto.title
+            },
+            create: {
+              image: updateProfileDto.image,
+              title: updateProfileDto.title
+            }
+          }
+        })
       }
     }
     return this.prisma.user.update({
