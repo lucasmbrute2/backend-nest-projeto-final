@@ -10,11 +10,11 @@ async function bootstrap() {
       }
     }
   );
-  app.useGlobalPipes(
+  app.useGlobalPipes( //global pipe onde estão sendo passadas proibições para o DTO
     new ValidationPipe({
       transform: true,
-      whitelist: true,
-      forbidNonWhitelisted: true
+      whitelist: true, //ativa a whitelist
+      forbidNonWhitelisted: true // faz com oq tudo que esteja fora do DTO seja proibido.
     })
   )
 

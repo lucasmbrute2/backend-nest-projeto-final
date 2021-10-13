@@ -1,6 +1,4 @@
-import { Profile } from "src/entities/profile/profile.entity";
-
-
+import { Profile } from "src/profile/entities/profile.entity";
 
 export class User {
     id?: number;
@@ -12,4 +10,3 @@ export class User {
     admin?: boolean;
     profile?: Profile | Profile[];
 }
-
