@@ -25,11 +25,11 @@ export class CreateGameDto extends Game {
 
     @IsNotEmpty()
     @IsString()
-    ytbTrailer: string;
+    trailerYtb: string;
 
     @IsNotEmpty()
     @IsString()
-    ytbGameplay: string;
+    gameplayYtb: string;
 
     genres?: Prisma.GamesOnGenresCreateNestedManyWithoutGameInput;
 }
