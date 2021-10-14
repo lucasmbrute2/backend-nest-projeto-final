@@ -15,7 +15,7 @@ model User {
   password        String 
   cpf             String      @unique
   admin           Boolean     @default(false)
-  profile   Profile[]
+  profile         Profile[]
 }
 
 model Profile {
