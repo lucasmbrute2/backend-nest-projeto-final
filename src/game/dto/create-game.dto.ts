@@ -31,6 +31,5 @@ export class CreateGameDto extends Game {
     @IsString()
     ytbGameplay: string;
 
-    profiles?: Prisma.ProfilesOnGamesCreateNestedManyWithoutGameInput;
     genres?: Prisma.GamesOnGenresCreateNestedManyWithoutGameInput;
 }

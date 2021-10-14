@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-export class Game implements Prisma.GameCreateInput {
+export class Game {
     title: string;
     cover: string;
     description: string;
@@ -8,7 +8,7 @@ export class Game implements Prisma.GameCreateInput {
     imdb: number;
     trailerYtb: string;
     gameplayYtb: string;
-    profiles?: Prisma.ProfilesOnGamesCreateNestedManyWithoutGameInput;
+
     genres?: Prisma.GamesOnGenresCreateNestedManyWithoutGameInput;
 
 }

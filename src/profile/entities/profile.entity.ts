@@ -1,4 +1,3 @@
-import { User } from ".prisma/client";
 import { Game } from "src/game/entities/game.entity";
 
 export class Profile {
