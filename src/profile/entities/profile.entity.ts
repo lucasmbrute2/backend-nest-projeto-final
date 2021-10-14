@@ -1,9 +1,10 @@
-import { Game } from "src/game/entities/game.entity";
+import { ConnectGameDto } from "src/game/dto/connect-game.dto";
 
 export class Profile {
-    id: number;
+    id?: number;
     title: string;
     image: string;
     userId: number;
-    games?: Game[]
+    game?: ConnectGameDto[]
+
 }
