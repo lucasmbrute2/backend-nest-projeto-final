@@ -5,8 +5,6 @@ import { UpdateProfileDto } from 'src/profile/dto/update-profile.dto';
 import { CreateUserDto } from './create-user.dto';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
-    @IsInt()
-    id: number
 
     @ValidateNested({ each: true })
     @IsOptional()
