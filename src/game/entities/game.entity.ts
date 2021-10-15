@@ -9,6 +9,5 @@ export class Game {
     imdb: number;
     trailerYtb: string;
     gameplayYtb: string;
-    genres?: Genre[]
-
+    genres?: string[]
 }

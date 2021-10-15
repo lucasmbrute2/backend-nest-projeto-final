@@ -12,10 +12,7 @@ export class CreateProfileDto extends Profile {
     image: string;
 
     @IsInt()
-    userId: number
+    userId: number;
 
-    @IsInt({ each: true })
-    @IsArray()
-    @IsOptional()
-    gamesId?: number[]
+
 }

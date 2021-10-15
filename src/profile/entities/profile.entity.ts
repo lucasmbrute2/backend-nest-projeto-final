@@ -5,6 +5,6 @@ export class Profile {
     title: string;
     image: string;
     userId: number;
-    game?: Game[]
-
+    games?: number[]
+    deletedGames?: number[]
 }

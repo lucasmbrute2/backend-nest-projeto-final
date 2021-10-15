@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Type } from "class-transformer";
+import { IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from "class-validator";
+import { Genre } from "src/genre/entities/genre.entity";
 import { Game } from "../entities/game.entity";
 
 export class CreateGameDto extends Game {
@@ -30,5 +32,9 @@ export class CreateGameDto extends Game {
     @IsString()
     gameplayYtb: string;
 
-    genresIds?: number[]
+    @IsString({ each: true })
+    @IsOptional()
+    @IsArray()
+    @IsNotEmpty({ each: true })
+    genres?: string[]
 }

@@ -1,3 +1,4 @@
+import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGameDto } from './dto/create-game.dto';
@@ -8,11 +9,36 @@ export class GameService {
   constructor(private prisma: PrismaService) { }
 
   private readonly _include = {
-    genres: true,
+    genres: {
+      select: {
+        genre: {
+          select: {
+            name: true
+          }
+        }
+      }
+    },
     profiles: true
 
   }
-  create(data: CreateGameDto) {
+  create(dto: CreateGameDto) {
+
+    const data: Prisma.GameCreateInput = {
+      ...dto,
+      genres: {
+        create: dto.genres?.map(genre => ({
+          genre: {
+            connectOrCreate: {
+              where: { name: genre },
+              create: {
+                name: genre
+              }
+            }
+          }
+        })) || []
+      }
+    }
+
     return this.prisma.game.create({
       data,
       include: this._include

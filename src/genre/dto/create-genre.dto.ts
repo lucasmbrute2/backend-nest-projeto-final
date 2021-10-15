@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { Genre } from "../entities/genre.entity";
 
