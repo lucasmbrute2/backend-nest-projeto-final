@@ -1,5 +1,4 @@
-import { IsArray, IsInt, IsNotEmpty, IsString } from "class-validator";
-import { ConnectGameDto } from "src/game/dto/connect-game.dto";
+import { IsArray, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { Profile } from "../entities/profile.entity";
 
 export class CreateProfileDto extends Profile {
@@ -13,10 +12,10 @@ export class CreateProfileDto extends Profile {
     image: string;
 
     @IsInt()
-    userId: number;
+    userId: number
 
     @IsInt({ each: true })
     @IsArray()
-    game?: ConnectGameDto[]
-
+    @IsOptional()
+    game?: number[]
 }

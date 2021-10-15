@@ -10,14 +10,14 @@ export class ProfileService {
 
   private readonly _include = {
     user: true,
-    game: true
+    game: {
+      include: {
+        game: true
+      }
+    }
+
   }
   create(data: CreateProfileDto) {
-    // game: {
-    //   create: dto.game.map(gameId => (
-    //     gameId
-    //   ))
-    // }
     return this.prisma.profile.create({
       data,
       include: this._include
@@ -40,14 +40,23 @@ export class ProfileService {
     })
   }
 
-  async update(id: number, data: UpdateProfileDto) {
-    // return this.prisma.profile.update({
-    //   where: {
-    //     id
-    //   },
-    //   data,
-    //   include: this._include
-    // })
+  async update(id: number, dto: UpdateProfileDto) {
+    const data: Prisma.ProfileUpdateInput = {
+      ...dto,
+      game: {
+        create: dto.game.map(gameId => ({
+          gameId
+        }))
+      }
+    }
+
+    return this.prisma.profile.update({
+      where: {
+        id
+      },
+      data,
+      include: this._include
+    })
   }
 
   async remove(id: number) {
