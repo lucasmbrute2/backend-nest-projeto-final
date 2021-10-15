@@ -44,9 +44,9 @@ export class ProfileService {
     const data: Prisma.ProfileUpdateInput = {
       ...dto,
       game: {
-        create: dto.game.map(gameId => ({
+        create: dto.game?.map(gameId => ({
           gameId
-        }))
+        })) || []
       }
     }
 

@@ -8,7 +8,7 @@ import { AppController } from './app.controller';
 
 
 @Module({
-  imports: [GameModule, UserModule, ProfileModule, GenreModule, UserModule],
+  imports: [GameModule, UserModule, ProfileModule, GenreModule],
   controllers: [AppController],
   providers: [AppService],
 })
