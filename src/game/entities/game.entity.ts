@@ -10,4 +10,5 @@ export class Game {
     trailerYtb: string;
     gameplayYtb: string;
     genres?: string[]
+    updateGenres?: string[]
 }

@@ -6,10 +6,11 @@ export class UpdateProfileDto extends PartialType(CreateProfileDto) {
     @IsInt({ each: true })
     @IsArray()
     @IsOptional()
-    games?: number[]
+    game?: number[]
+
 
     @IsInt({ each: true })
     @IsArray()
     @IsOptional()
-    deletedGames: number[]
+    deletedGames?: number[]
 }

@@ -46,9 +46,9 @@ export class ProfileService {
 
     const data: Prisma.ProfileUpdateInput = {
       ...dto,
-      game: dto.games || deletedGames ?
+      game: dto.game || deletedGames ?
         {
-          create: dto.games?.map(gameId => ({
+          create: dto.game?.map(gameId => ({
             gameId
           })) || [],
           delete: deletedGames?.map(gameId => ({
@@ -59,7 +59,6 @@ export class ProfileService {
           })) || []
         } : {}
     }
-
     return this.prisma.profile.update({
       where: {
         id
