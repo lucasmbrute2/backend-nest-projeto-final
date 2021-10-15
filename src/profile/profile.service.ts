@@ -41,10 +41,13 @@ export class ProfileService {
   }
 
   async update(id: number, dto: UpdateProfileDto) {
+    const gamesId = dto.gamesId
+    delete dto.gamesId
+
     const data: Prisma.ProfileUpdateInput = {
       ...dto,
       game: {
-        create: dto.game?.map(gameId => ({
+        create: gamesId?.map(gameId => ({
           gameId
         })) || []
       }

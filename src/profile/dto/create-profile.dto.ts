@@ -17,5 +17,5 @@ export class CreateProfileDto extends Profile {
     @IsInt({ each: true })
     @IsArray()
     @IsOptional()
-    game?: number[]
+    gamesId?: number[]
 }
