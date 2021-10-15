@@ -1,4 +1,3 @@
-import { Prisma } from ".prisma/client";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Game } from "../entities/game.entity";
 
@@ -31,5 +30,5 @@ export class CreateGameDto extends Game {
     @IsString()
     gameplayYtb: string;
 
-    genres?: Prisma.GamesOnGenresCreateNestedManyWithoutGameInput;
+    genresIds?: number[]
 }

@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Genre } from "src/genre/entities/genre.entity";
 
 export class Game {
     id: number
@@ -9,7 +9,6 @@ export class Game {
     imdb: number;
     trailerYtb: string;
     gameplayYtb: string;
-
-    genres?: Prisma.GamesOnGenresCreateNestedManyWithoutGameInput;
+    genres?: Genre[]
 
 }
