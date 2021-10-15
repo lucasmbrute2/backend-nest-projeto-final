@@ -47,9 +47,28 @@ export class ProfileService {
     const data: Prisma.ProfileUpdateInput = {
       ...dto,
       game: {
-        create: gamesId?.map(gameId => ({
-          gameId
-        })) || []
+        upsert: gamesId?.map(gameId => ({
+          where: {
+            profileId_gameId: {
+              profileId: dto.id,
+              gameId
+            }
+          },
+          update: {
+            game: {
+              update: {
+                dto
+              }
+            }
+          },
+          create: {
+            game: {
+              create: {
+                dto
+              }
+            }
+          }
+        }))
       }
     }
 
