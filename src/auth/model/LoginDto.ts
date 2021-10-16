@@ -1,6 +1,6 @@
 import { IsEmail, IsString, Matches, MaxLength, MinLength } from "class-validator"
 
-export class LoginRequestBody {
+export class LoginDto {
     @IsEmail()
     email: string
 
