@@ -20,7 +20,7 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.userService.findOne(id).catch(err => this._errorReturn(id));
+    return this.userService.findById(id).catch(err => this._errorReturn(id));
   }
 
   @Patch(':id')

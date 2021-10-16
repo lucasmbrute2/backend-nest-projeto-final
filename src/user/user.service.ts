@@ -21,10 +21,15 @@ export class UserService {
       }
     }
 
-    return this.prisma.user.create({
+    const createdUser = await this.prisma.user.create({
       data,
       include: this._include
     })
+    return {
+      ...createdUser,
+      password: undefined
+    }
+
   }
 
   findAll() {
@@ -33,7 +38,7 @@ export class UserService {
     })
   }
 
-  async findOne(id: number) {
+  async findById(id: number) {
     return this.prisma.user.findUnique({
       where: {
         id
@@ -41,6 +46,10 @@ export class UserService {
       include: this._include,
       rejectOnNotFound: true
     })
+  }
+
+  findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } })
   }
 
   async update(id: number, dto: UpdateUserDto) {
