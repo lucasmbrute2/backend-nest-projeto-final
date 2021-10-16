@@ -1,10 +1,9 @@
 import { Prisma } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UpdateProfileDto } from 'src/profile/dto/update-profile.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
+import * as bcrypt from "bcrypt"
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) { }
@@ -16,6 +15,7 @@ export class UserService {
   create(dto: CreateUserDto) {
     const data: Prisma.UserCreateInput = {
       ...dto,
+      password: bcrypt,
       profile: {
         create: dto.profile
       }
