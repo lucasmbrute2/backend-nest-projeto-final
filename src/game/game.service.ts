@@ -26,7 +26,7 @@ export class GameService {
     const data: Prisma.GameCreateInput = {
       ...dto,
       genres: {
-        create: dto.genres?.map(genre => ({
+        create: dto.genres.map(genre => ({
           genre: {
             connectOrCreate: {
               where: { name: genre },

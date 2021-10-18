@@ -18,7 +18,13 @@ export class UserService {
       ...dto,
       password: await bcrypt.hash(dto.password, 10),
       profile: {
-        create: dto.profile
+        connectOrCreate: dto.profile.map(createUser => ({
+          where: { id: createUser.userId },
+          create: {
+            title: createUser.title,
+            image: createUser.image,
+          }
+        }))
       }
     }
 
