@@ -13,12 +13,13 @@ export class AuthService {
     constructor(private readonly userService: UserService, private readonly jwtService: JwtService) { }
     async login(dto: LoginDto): Promise<UserToken> {
         const user: User = await this.validateUser(dto.email, dto.password)
+
         const payload: UserPayload = {
             sub: user.id,
             username: user.email
         };
         return {
-            accessToken: this.jwtService.sign(payload)
+            accessToken: this.jwtService.sign(payload)//Onde de fato está sendo gerado o Token
         }
     }
     async validateUser(email: string, password: string): Promise<User> {
