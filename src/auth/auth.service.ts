@@ -6,6 +6,7 @@ import { LoginDto } from './model/LoginDto';
 import * as bcrypt from "bcrypt"
 import { UserPayload } from './model/User.Payload';
 import { UserToken } from './model/UserToken';
+import { UnauthorizedError } from 'src/errors/unauthorized.error';
 @Injectable()
 
 //Arquivo criado para comparar a senha que o usuário está digitando, com a senha do Banco de dados.
@@ -37,7 +38,7 @@ export class AuthService {
                 }
             }
             //Se sairmos do IF ou não entrarmos, significa q o user não foi encontrado, portanto, enviamos um erro.
-            throw new Error('User not found or wrong password')
+            throw new UnauthorizedError('User not found or wrong password')
         }
     };
 
