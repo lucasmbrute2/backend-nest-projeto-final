@@ -37,9 +37,9 @@ export class AuthService {
                     password: undefined
                 }
             }
-            //Se sairmos do IF ou não entrarmos, significa q o user não foi encontrado, portanto, enviamos um erro.
-            throw new UnauthorizedError('User not found or wrong password')
         }
+        //Se sairmos do IF ou não entrarmos, significa q o user não foi encontrado, portanto, enviamos um erro.
+        throw new UnauthorizedError('User not found or wrong password')
     };
 
 }
