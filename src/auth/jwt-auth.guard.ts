@@ -1,7 +1,7 @@
 // NestJS
 import { ExecutionContext, Inject, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-// Password
+// Passport
 import { AuthGuard } from '@nestjs/passport';
 // RxJs
 import { of } from 'rxjs';
@@ -10,7 +10,7 @@ import { map, mergeMap, takeWhile, tap } from 'rxjs/operators';
 import { UserService } from '../user/user.service';
 // Models
 import { UserFromJwt } from './model/UserFromJwt';
-import { AuthRequest } from '../model/AuthRequest';
+import { AuthRequest } from './model/AuthRequest';
 // Decorators
 import { IS_PUBLIC_KEY } from './auth.decorator';
 @Injectable()
@@ -56,3 +56,4 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
             map((user) => Boolean(user)),
         );
     }
+}
