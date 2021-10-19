@@ -8,4 +8,5 @@ export class User {
     password: string;
     cpf: string;
     admin?: boolean;
+    profile?: Profile[]
 }

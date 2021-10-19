@@ -30,6 +30,7 @@ export class CreateUserDto extends User {
     @Cpf()
     cpf: string;
 
+    @IsOptional()
     @IsBoolean()
     admin: boolean
 }

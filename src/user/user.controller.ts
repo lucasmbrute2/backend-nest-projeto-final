@@ -33,6 +33,7 @@ export class UserController {
     return this.userService.update(id, updateUserDto).catch(err => this._errorReturn(id));
   }
 
+  @Public()
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: number) {
