@@ -16,16 +16,7 @@ export class UserService {
   async create(dto: CreateUserDto) {
     const data: Prisma.UserCreateInput = {
       ...dto,
-      password: await bcrypt.hash(dto.password, 10),
-      profile: {
-        connectOrCreate: dto.profile.map(createUser => ({
-          where: { id: createUser.userId },
-          create: {
-            title: createUser.title,
-            image: createUser.image,
-          }
-        }))
-      }
+      password: await bcrypt.hash(dto.password, 10)
     }
 
     const createdUser = await this.prisma.user.create({

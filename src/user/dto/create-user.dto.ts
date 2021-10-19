@@ -32,10 +32,4 @@ export class CreateUserDto extends User {
 
     @IsBoolean()
     admin: boolean
-
-    @ValidateNested({ each: true })
-    @IsOptional()
-    @Type(() => CreateProfileDto)
-    @IsArray()
-    profile?: CreateProfileDto[];
 }

@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus
 import { GameService } from './game.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import { Public } from 'src/auth/auth.decorator';
 
 @Controller('game')
 export class GameController {
@@ -12,12 +13,13 @@ export class GameController {
   create(@Body() createGameDto: CreateGameDto) {
     return this.gameService.create(createGameDto);
   }
-
+  @Public()
   @Get()
   findAll() {
     return this.gameService.findAll();
   }
 
+  @Public()
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.gameService.findOne(id).catch(err => this.errorReturn(id));
