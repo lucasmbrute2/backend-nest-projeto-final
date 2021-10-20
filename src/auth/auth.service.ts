@@ -12,6 +12,7 @@ import { UnauthorizedError } from 'src/errors/unauthorized.error';
 //Arquivo criado para comparar a senha que o usuário está digitando, com a senha do Banco de dados.
 export class AuthService {
     constructor(private readonly userService: UserService, private readonly jwtService: JwtService) { }
+
     async login(dto: LoginDto): Promise<UserToken> {
         const user: User = await this.validateUser(dto.email, dto.password)
 
