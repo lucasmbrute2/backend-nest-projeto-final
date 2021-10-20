@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { User } from './entities/user.entity';
+import { Public } from 'src/auth/auth.decorator';
 
 @Controller('user')
 export class UserController {
@@ -11,6 +12,7 @@ export class UserController {
 
   private readonly _errorReturn = (id: number) => { throw new HttpException('Not Found', 404) }
 
+  @Public()
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
