@@ -4,6 +4,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from "bcrypt"
+import { CurrentUser } from 'src/decorators/current-user.decorator';
+import { User } from './entities/user.entity';
 @Injectable()
 //O service é onde de fato todo o trabalho "pesado acontece."
 export class UserService {
