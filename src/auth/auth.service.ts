@@ -20,9 +20,8 @@ export class AuthService {
             sub: user.id,
             username: user.email
         };
-        return {
-            accessToken: this.jwtService.sign(payload)//Onde de fato está sendo gerado o Token
-        }
+
+        return { accessToken: this.jwtService.sign(payload), userID: user.id }
     }
     async validateUser(email: string, password: string): Promise<User> {
         const user: User = await this.userService.findByEmail(email)

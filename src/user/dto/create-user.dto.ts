@@ -1,7 +1,5 @@
-import { Type } from "class-transformer";
 import { IsArray, IsBoolean, IsEmail, IsNotEmpty, IsOptional, isString, IsString, Length, Matches, ValidateNested } from "class-validator";
 import { Cpf } from "src/decorators/cpf.decorator";
-import { CreateProfileDto } from "src/profile/dto/create-profile.dto";
 import { User } from "../entities/user.entity";
 
 export class CreateUserDto extends User {

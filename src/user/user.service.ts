@@ -6,6 +6,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from "bcrypt"
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { User } from './entities/user.entity';
+import { Public } from 'src/auth/auth.decorator';
 @Injectable()
 //O service é onde de fato todo o trabalho "pesado acontece."
 export class UserService {
