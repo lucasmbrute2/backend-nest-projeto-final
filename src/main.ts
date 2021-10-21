@@ -5,12 +5,7 @@ import { AppModule } from './app.module';
 import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule,
-    {
-      cors: true
-    }
-
-  );
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalPipes( //global pipe onde estão sendo passadas proibições para o DTO
     new ValidationPipe({
       transform: true,
