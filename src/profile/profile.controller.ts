@@ -21,18 +21,18 @@ export class ProfileController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.profileService.findOne(+id).catch(err => this._errorReturn(id)
-    )
+    return this.profileService.findOne(+id)//.catch(err => this._errorReturn(id)
+
   }
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateProfileDto: UpdateProfileDto) {
-    return this.profileService.update(+id, updateProfileDto).catch((err) => this._errorReturn(id))
+    return this.profileService.update(+id, updateProfileDto)//.catch((err) => this._errorReturn(id))
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: number) {
-    return this.profileService.remove(+id).catch((err) => this._errorReturn(id))
+    return this.profileService.remove(+id)//.catch((err) => this._errorReturn(id))
   }
 }
